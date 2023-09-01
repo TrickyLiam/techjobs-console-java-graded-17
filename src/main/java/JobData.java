@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -50,7 +47,9 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>(allJobs);
+
+        return allJobsCopy;
     }
 
     /**
@@ -71,12 +70,12 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> job : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = job.get(column).toLowerCase();
 
             if (aValue.contains(value)) {
-                jobs.add(row);
+                jobs.add(job);
             }
         }
 
@@ -94,9 +93,22 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
-    }
+        ArrayList<HashMap<String, String>> newJobs = new ArrayList<>();
+
+        for(HashMap<String, String> job : allJobs){
+            for (String row : job.values()) {
+                if (row.toLowerCase().contains(value)) {
+                    newJobs.add(job);
+                    break;
+                }
+            }
+        }
+
+
+
+        return newJobs;
+        }
+
 
     /**
      * Read in data from a CSV file and store it in a list
@@ -129,6 +141,8 @@ public class JobData {
 
                 allJobs.add(newJob);
             }
+
+            allJobs.sort((o1, o2) -> o1.get("name").toLowerCase().compareTo(o2.get("name").toLowerCase()));
 
             // flag the data as loaded, so we don't do it twice
             isDataLoaded = true;

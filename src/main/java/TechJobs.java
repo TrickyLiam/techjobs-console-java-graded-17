@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -59,7 +56,7 @@ public class TechJobs {
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
-                String searchTerm = in.nextLine();
+                String searchTerm = in.nextLine().toLowerCase();
 //                String searchTerm = in.nextLine().toLowerCase();
 
                 if (searchField.equals("all")) {
@@ -125,6 +122,7 @@ public class TechJobs {
             System.out.println("Example Search Term with No Results");
             System.out.println("No Results");
         } else {
+
         for (HashMap<String, String> entry : someJobs) {
                 System.out.println("*****");
                 for (Map.Entry<String, String> key : entry.entrySet()) {
