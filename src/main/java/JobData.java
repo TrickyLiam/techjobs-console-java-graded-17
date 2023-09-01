@@ -142,7 +142,8 @@ public class JobData {
                 allJobs.add(newJob);
             }
 
-            allJobs.sort((o1, o2) -> o1.get("name").toLowerCase().compareTo(o2.get("name").toLowerCase()));
+            //Bonus mission (sorting alphabetically) - Breaks a test though so commented out
+//            allJobs.sort((name1, name2) -> name1.get("name").toLowerCase().compareTo(name2.get("name").toLowerCase()));
 
             // flag the data as loaded, so we don't do it twice
             isDataLoaded = true;

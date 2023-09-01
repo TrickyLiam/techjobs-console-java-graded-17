@@ -119,16 +119,15 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         if (someJobs.isEmpty()) {
-            System.out.println("Example Search Term with No Results");
-            System.out.println("No Results");
+            System.out.print("No Results");
         } else {
 
         for (HashMap<String, String> entry : someJobs) {
-                System.out.println("*****");
+                System.out.println("\n" + "*****");
                 for (Map.Entry<String, String> key : entry.entrySet()) {
                     System.out.println(key.getKey() + ": " + key.getValue());
                 }
-                System.out.println("*****" + "\n");
+                System.out.println("*****");
             }
         }
     }
